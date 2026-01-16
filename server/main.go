@@ -28,8 +28,7 @@ func handleButtonClick(w http.ResponseWriter, r *http.Request) {
 	// Log to console
 	fmt.Println("Button was clicked!")
 
-	// Set CORS headers to allow requests from the website
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	// Set response headers
 	w.Header().Set("Content-Type", "application/json")
 	
 	// Send response
