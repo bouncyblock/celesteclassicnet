@@ -1,4 +1,4 @@
-# How to inject and eject varialbes from a HTML PICO-8 export
+# How to inject and eject variables from a HTML PICO-8 export
 (this assumes you know a little bit on how p8 works)
 
 ### Getting started
@@ -90,7 +90,7 @@ var Module = {};
 </script>
 
 
-<!-- before the cart script (can be found by searching for "Add any content aboce the cart here" as they are pre-generated comments) -->
+<!-- before the cart script (can be found by searching for "Add any content above the cart here" as they are pre-generated comments) -->
 <h1 style="text-align:center;">PICO-8 Web Player Test, Pixel Version</h1>
 <input type = "text" id="inputX" placeholder="Enter X value">
 <input type = "text" id="inputY" placeholder="Enter Y value">
