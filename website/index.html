@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celeste Classic Net</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-</head>
-
+<html>
 <body>
-    
-    <h1>Celeste Classic Net</h1>
-    <button id="testButton">test button</button>
-    <p id="responseMessage"></p>
+    <h1>Shared Array Demo</h1>
+
+    <div id="arrayDisplay"></div>
+
+    <input id="valueInput" placeholder="Value">
+    <button onclick="pushValue()">Push</button>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8765");
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            document.getElementById("arrayDisplay").innerText =
+                JSON.stringify(data.array);
+        };
+
+        function pushValue() {
+            const value = document.getElementById("valueInput").value;
+            ws.send(JSON.stringify({
+                action: "push",
+                value: value
+            }));
+        }
+    </script>
 </body>
+</html>
