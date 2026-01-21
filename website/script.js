@@ -1,19 +1,27 @@
-const responseMessage = document.getElementById('responseMessage');
+const ws = new WebSocket("ws://localhost:8765");
+webID = null;
 
-document.getElementById('testButton').addEventListener('click', async () => {
-  try {
-    const response = await fetch('http://127.0.0.1:8080/log-message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Button was clicked!' })
-    });
-    console.log('Button response:', response.ok);
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  
+  console.log("Received from server:", data);
 
-    responseMessage.textContent = 'Message sent to server!';
-        
-    } catch (error) {
-    console.error('Error:', error);
+  if (webID === null) {
+    webID = data.array["webID"];
+    console.log("Assigned webID:", webID);
   }
-});
+  
+  document.getElementById("arrayDisplay").innerText = JSON.stringify(data.array);
+  
+};
 
-    
+function pushValue() {
+  const XValue = document.getElementById("XValueInput").value;
+  const YValue = document.getElementById("YValueInput").value;
+  
+  console.log("Pushing values:", XValue, YValue, webID);
+  ws.send(JSON.stringify({
+    action: "push",
+    value: { XValue, YValue , webID }
+  }));
+}

@@ -1,29 +1,18 @@
 <!DOCTYPE html>
+
+
 <html>
+    
 <body>
     <h1>Shared Array Demo</h1>
 
     <div id="arrayDisplay"></div>
 
-    <input id="valueInput" placeholder="Value">
-    <button onclick="pushValue()">Push</button>
+    <input id="XValueInput" placeholder="X Value">
+    <input id="YValueInput" placeholder="Y Value">
+    <button onclick="pushValue()">Send Numbers</button>
 
-    <script>
-        const ws = new WebSocket("ws://localhost:8765");
+    <script src="script.js"></script>
 
-        ws.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            document.getElementById("arrayDisplay").innerText =
-                JSON.stringify(data.array);
-        };
-
-        function pushValue() {
-            const value = document.getElementById("valueInput").value;
-            ws.send(JSON.stringify({
-                action: "push",
-                value: value
-            }));
-        }
-    </script>
 </body>
 </html>
