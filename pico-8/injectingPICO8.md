@@ -120,3 +120,24 @@ var Module = {};
 
 Examples of this can be seen in pixeltest.html or getvaluetest.html
 
+
+### Extended Topics:
+
+#### Importing tables
+
+not tested
+
+```js
+// JS sends: "2|1:2,0|61:1"
+// Format: webID|x1:y1|x2:y2|...
+pico8_gpio[0] = "2|1:2|61:1";
+```
+
+```lua
+-- Lua parses manually with string functions
+local data = gpio[0]
+local parts = split(data, "|")
+local webid = tonumber(parts[1])
+-- parse coordinates...
+```
+
